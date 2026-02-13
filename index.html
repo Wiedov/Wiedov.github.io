@@ -1,0 +1,583 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #f0f0f0;
+            line-height: 1.6;
+            min-height: 100vh;
+            animation: gradientShift 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffe66d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+            .nav a::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+                transition: width 0.3s ease;
+            }
+
+            .nav a:hover {
+                transform: translateY(-2px);
+                text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            }
+
+                .nav a:hover::before {
+                    width: 100%;
+                }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+            .project-card:nth-child(1) {
+                animation-delay: 0.2s;
+            }
+
+            .project-card:nth-child(2) {
+                animation-delay: 0.4s;
+            }
+
+            .project-card:nth-child(3) {
+                animation-delay: 0.6s;
+            }
+
+            .project-card:nth-child(4) {
+                animation-delay: 0.8s;
+            }
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-card p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(255,107,107,0.3);
+            }
+
+                .btn:hover::before {
+                    left: 100%;
+                }
+
+        .skills {
+            margin: 4rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+
+            .skills h2 {
+                text-align: center;
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+                background: linear-gradient(135deg, #4ecdc4, #ffe66d);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .skill-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: -1;
+            }
+
+            .skill-item:hover {
+                transform: scale(1.05);
+                border-color: transparent;
+            }
+
+                .skill-item:hover::before {
+                    opacity: 0.2;
+                }
+
+        .about {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 1s ease 1.2s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffe66d, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .social-link {
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) rotate(360deg);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-color: transparent;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .about {
+                padding: 2rem;
+            }
+        }
+
+        .social-showcase {
+            margin: 4rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.4s forwards;
+        }
+
+        .social-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ffe66d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .social-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 1.8rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .social-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, #ff6b6b20, #4ecdc420);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                z-index: -1;
+            }
+
+            .social-card:hover {
+                transform: translateY(-5px);
+                border-color: rgba(255,255,255,0.2);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+
+                .social-card:hover::before {
+                    opacity: 1;
+                }
+
+        .social-icon {
+            font-size: 2.5rem;
+            min-width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255,255,255,0.1);
+            border-color: #ff6b6b;
+        }
+
+        .social-info {
+            flex: 1;
+        }
+
+            .social-info h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.3rem;
+                background: linear-gradient(135deg, #fff, #4ecdc4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .social-info p {
+                font-size: 0.9rem;
+                color: rgba(255,255,255,0.6);
+            }
+
+        .social-card-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            backdrop-filter: blur(5px);
+        }
+
+            .social-card-btn:hover {
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                border-color: transparent;
+                transform: translateX(3px);
+                box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+            }
+
+        @media (max-width: 600px) {
+            .social-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .social-icon {
+                margin-bottom: 0.5rem;
+            }
+
+            .social-card-btn {
+                width: 100%;
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+        }
+
+
+        .social-card a[href^="mailto:"] {
+
+        }
+
+            .social-card a[href^="mailto:"]:hover {
+                background: linear-gradient(45deg, #ffe66d, #ff6b6b);
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <h1>Привет, я Wiedov</h1>
+            <p>Креативный дизайнер и разработчик, создающий красивые цифровые продукты с душой и вниманием к деталям</p>
+        </header>
+
+        <nav class="nav">
+            <a href="#projects">Проекты</a>
+            <a href="#skills">Навыки</a>
+            <a href="#about">Обо мне</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+
+        <section id="projects" class="projects">
+            <div class="project-card">
+                <h3>✦ Данный сайт</h3>
+                <p>Современный сайт с уникальным дизайном и анимациями</p>
+                <a href="#" class="btn">Посмотреть</a>
+            </div>
+
+            <div class="project-card">
+                <h3>✦ Какой-то проект</h3>
+                <p>Тут скоро будет описание</p>
+                <a href="#" class="btn">Посмотреть</a>
+            </div>
+
+            <div class="project-card">
+                <h3>✦ Какой-то проект</h3>
+                <p>Тут скоро будет описание</p>
+                <a href="#" class="btn">Посмотреть</a>
+            </div>
+
+            <div class="project-card">
+                <h3>✦ Какой-то проект</h3>
+                <p>Тут скоро будет описание</p>
+                <a href="#" class="btn">Посмотреть</a>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2>⚡ Мои навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-item">UI/UX Design</div>
+                <div class="skill-item">HTML/CSS</div>
+                <div class="skill-item">Анимация</div>
+                <div class="skill-item">3D Моделирование в blender</div>
+                <div class="skill-item">C#/C++</div>
+                <div class="skill-item">Разработка TG ботов</div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>✨ Обо мне</h2>
+            <p>Я занимаюсь дизайном и разработкой уже 3 года. Мой подход — сочетание эстетики и функциональности. Люблю создавать проекты, которые вдохновляют и решают реальные задачи. Верю, что красота и удобство могут существовать вместе.</p>
+            <p style="margin-top: 1rem;">В свободное время экспериментирую с цветами, типографикой и новыми технологиями в веб-дизайне.</p>
+        </section>
+
+        <div id="contact" class="social-showcase">
+            <h2 class="social-title">🌐 Связаться со мной</h2>
+            <div class="social-grid">
+
+                <div class="social-card">
+                    <div class="social-icon">⌨️</div>
+                    <div class="social-info">
+                        <h3>GitHub</h3>
+                        <p>Исходный код проектов и эксперименты</p>
+                    </div>
+                    <a href="https://github.com/" target="_blank" class="social-card-btn">Перейти →</a>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon">📱</div>
+                    <div class="social-info">
+                        <h3>Telegram (канал)</h3>
+                        <p>Закулисье работы где я делюсь опытом</p>
+                    </div>
+                    <a href="https://t.me/" target="_blank" class="social-card-btn">Перейти →</a>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon">📱</div>
+                    <div class="social-info">
+                        <h3>Telegram</h3>
+                        <p>Быстрая связь в мессенджере</p>
+                    </div>
+                    <a href="https://t.me/user_wiedov" target="_blank" class="social-card-btn">Перейти →</a>
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p> 2026 Wiedov ❤️</p>
+        </footer>
+    </div>
+</body>
+</html>
