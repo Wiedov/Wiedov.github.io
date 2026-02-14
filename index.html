@@ -19,7 +19,7 @@
             color: #f0f0f0;
             line-height: 1.6;
             min-height: 100vh;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientShift 10s ease infinite;
             background-size: 400% 400%;
         }
 
@@ -38,6 +38,7 @@
         }
 
         .container {
+            padding-top: 80px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
@@ -455,6 +456,11 @@
             }
 
         @media (max-width: 600px) {
+
+            .page-sw {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
             .social-card {
                 flex-direction: column;
                 text-align: center;
@@ -480,9 +486,31 @@
             .social-card a[href^="mailto:"]:hover {
                 background: linear-gradient(45deg, #ffe66d, #ff6b6b);
             }
+
+
+        .page-sw {
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .page-sw:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.4);
+        }
     </style>
 </head>
 <body>
+    <div style="position: fixed; top: 20px; left: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <a href="index.html" class="page-sw" style="background: linear-gradient(45deg, #ff6b6b, #4ecdc4);">🏠 Портфолио</a>
+        <a href="order.html" class="page-sw" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">📦 Заказать</a>
+    </div>
     <div class="container">
 
         <header class="header">
@@ -580,5 +608,4 @@
         </footer>
     </div>
 </body>
-
 </html>
